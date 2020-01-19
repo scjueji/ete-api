@@ -6,8 +6,8 @@ echo 'Jenkins''s local Maven repository (and the "maven-repository" Docker data'
 echo 'volume).'
  
 
- mvn clean install -f ./parent/pom.xml
+ mvn clean  -f ./parent/pom.xml
  mvn clean install -f ./parent/ete_server/pom.xml
 
-
+echo "ls -l"
 java -jar target/eteserver-1.0-SNAPSHOT.jar
