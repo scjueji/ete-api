@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.t3.api.mapper.UserMapper">
+    <!-- 登录用户信息Map-->
+    <resultMap id="loginUserMap" type="com.t3.api.entity.UserBean">
+        <result column="USERID" jdbcType="CHAR" property="userid" />
+        <result column="MASK" jdbcType="VARCHAR" property="mask" />
+        <result column="IP" jdbcType="VARCHAR" property="ip" />
+        <result column="KEY" jdbcType="CHAR" property="key" />
+        <result column="CREATOR" jdbcType="CHAR" property="creator" />
+        <result column="CREATETIME" jdbcType="DATE" property="createtime" />
+        <result column="STATUS" jdbcType="CHAR" property="status" />
+        <result column="VALIDTIME" jdbcType="DATE" property="validtime" />
+    </resultMap>
+    <select id="selectLoginUserByKeyAuth" resultMap="loginUserMap">
+        SELECT distinct K.*
+        FROM
+        INTERFACE_USER_KEY K,
+        XT_YHXX YH,
+        XT_YH_JS YJ,
+        XT_JSXX JS,
+        XT_QX_JS QJ,
+        XT_QX_XX QX
+        WHERE 1 = 1
+        AND K.USERID = YH.YH_ID AND YH.YH_ID = YJ.YH_ID
+        AND YJ.JS_ID = JS.JS_ID AND JS.JS_ID = QJ.JS_ID
+        AND QJ.QX_ID = QX.QX_ID AND QX.QX_ID = #{authId}
+        AND K.STATUS = '1' AND K.KEY = #{key}
+    </select>
+
+</mapper>

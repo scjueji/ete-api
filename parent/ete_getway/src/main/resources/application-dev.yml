@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: ApiGetWay
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+server:
+  port: 7001
+
+zuul:
+  prefix: /scjueji
+  ignored-services: "*"
+  routes:
+    test.serviceId: eureka-producer
+    test.path: /test/**
+
+mybatis:
+  config-location: classpath:mybatis/mybatis-config.xml
+  mapper-locations: classpath:mybatis/mapper/*.xml

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/common/common.iml" filepath="$PROJECT_DIR$/common/common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ete_getway/ete_getway.iml" filepath="$PROJECT_DIR$/ete_getway/ete_getway.iml" />
+      <module fileurl="file://$PROJECT_DIR$/eteserver/eteserver.iml" filepath="$PROJECT_DIR$/eteserver/eteserver.iml" />
+      <module fileurl="file://$PROJECT_DIR$/parent.iml" filepath="$PROJECT_DIR$/parent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/seat_provider/seat_provider.iml" filepath="$PROJECT_DIR$/seat_provider/seat_provider.iml" />
+    </modules>
+  </component>
+</project>
