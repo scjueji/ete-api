@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-
+set +x
  mvn clean install -f ./pom.xml
  mvn clean install -f ./common/pom.xml
  mvn clean install -f ./ete_getway/pom.xml
