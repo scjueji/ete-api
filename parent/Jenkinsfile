@@ -11,16 +11,7 @@ pipeline {
                 sh 'echo "1111"'
             }
         }
-        stage('Test') {
-            steps {
-                sh 'mvn test'
-            }
-            post {
-                always {
-                    sh 'echo "2222"'
-                }
-            }
-        }
+       
         stage('Deliver') {
             steps {
                 sh './deliver.sh'
