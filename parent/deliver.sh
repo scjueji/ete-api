@@ -11,4 +11,4 @@ echo 'volume).'
  mvn clean install -f ./parent/eteserver/pom.xml
 
 
-java -jar target/eteserver-1.0-SNAPSHOT.jar
+java -jar ./parent/eteserver/target/eteserver-1.0-SNAPSHOT.jar
