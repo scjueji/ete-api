@@ -14,6 +14,7 @@ pipeline {
        
         stage('Deliver') {
             steps {
+				sh 'chmod 777 ./parent/deliver.sh'
                 sh './parent/deliver.sh'
             }
         }
