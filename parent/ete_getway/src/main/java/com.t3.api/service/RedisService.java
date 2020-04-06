@@ -1,8 +1,11 @@
 package com.t3.api.service;
 
 import com.alibaba.fastjson.JSON;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.data.redis.hash.Jackson2HashMapper;
 import org.springframework.stereotype.Service;
 
 import java.time.Duration;
@@ -17,7 +20,11 @@ import java.util.Set;
 @Service
 public class RedisService<T> {
     @Autowired
-    StringRedisTemplate stringRedisTemplate;
+    @Qualifier("myredisTemplate")
+    StringRedisTemplate  stringRedisTemplate;
+    @Autowired
+    ObjectMapper objectMapper;
+    Jackson2HashMapper mapper =new Jackson2HashMapper(objectMapper,false);
 
     public <T> boolean set(String key ,T value){
 
@@ -66,7 +73,18 @@ public class RedisService<T> {
             return JSON.toJavaObject(JSON.parseObject(value), clazz);
         }
     }
+    public void put_hash_bean(String key, Object o) {
+        //Jackson2HashMapper mapper = new Jackson2HashMapper(objectMapper,false);
+        stringRedisTemplate.opsForHash().putAll(key,mapper.toHash(o));
+    }
+    public <T>Object get_hash_bean(String key, Class<T> clazz) {
+       // Jackson2HashMapper mapper = new Jackson2HashMapper(objectMapper,false);
+        Map map = stringRedisTemplate.opsForHash().entries(key);
+        Object bean =objectMapper.convertValue(map,clazz);
+        Object bean2 =mapper.fromHash(map);
 
+        return bean;
+    }
     /**
      *
      * @param
